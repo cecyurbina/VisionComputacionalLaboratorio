@@ -1,2 +1,5 @@
 VisionComputacionalLaboratorio
 ==============================
+Tareas de laboratorio
+
+    
