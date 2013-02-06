@@ -5,12 +5,13 @@
 from Tkinter import *
 from PIL import Image, ImageTk
 from math import floor
+import sys
 
-class Interfaz:
+class Aplicacion:
     """clase que dibuja los botones
     """
-    def __init__(self, master):
-        self.nombre_imagen = "thelord.png"
+    def __init__(self, master, imagen_path):
+        self.nombre_imagen = imagen_path
         self.imagen_original = self.abrir_imagen_original()
         self.imagen_actual = self.imagen_original
         self.x, self.y = self.imagen_original.size
@@ -40,7 +41,7 @@ class Interfaz:
         self.reset.grid(row=0, column=5,padx=15, pady=15)
         self.guarda.grid(row=0, column=6,padx=15, pady=15)
         #se abre la imagen                     
-        foto = Image.open("thelord.png")
+        foto = Image.open(imagen_path)
         foto = ImageTk.PhotoImage(foto)
         self.picture = Label(self.frame, image=foto)
         self.picture.image = foto
@@ -198,8 +199,14 @@ class Interfaz:
 def main():
     """funcion principal
     """
+    try:
+        imagen_path = sys.argv[1]
+        print imagen_path
+    except:
+        print "No seleccionaste una imagen"
+        return
     root = Tk()
-    App = Interfaz(root)
+    App = Aplicacion(root, imagen_path)
     root.title("Imagenes")
     root.mainloop()
 
