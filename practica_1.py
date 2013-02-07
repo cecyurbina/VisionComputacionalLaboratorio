@@ -125,7 +125,7 @@ class Aplicacion:
         for a in range(self.y):
             for b in range(self.x):
                 color = self.imagen_actual.getpixel((b,a))[0]
-                if color > 150:
+                if color > 127:
                     color = 255
                 else:
                     color = 0
