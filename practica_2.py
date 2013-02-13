@@ -40,19 +40,16 @@ class Aplicacion:
         self.picture.grid(row=1, column=0, columnspan=6,sticky=W+E+N+S, padx=5, pady=5)
 
     def sal_pimienta(self):
-        """
+        """agrega ruido a la imagen con pixeles blancos y negros
+        en posiciones aleatorias
         """
         imagen_perturbada = Image.new("RGB", (self.x,self.y))
         total_pixeles = self.x * self.y
-        print total_pixeles
         pixeles_cambiar = total_pixeles/60
-        print pixeles_cambiar
         pixeles_perturbados = []
         for i in xrange(pixeles_cambiar):
             elegido = random.randint(0, total_pixeles-1)
             pixeles_perturbados.append(elegido)
-        print pixeles_perturbados
-        print len(pixeles_perturbados)
         pixeles = []
         contador = 0
         for a in xrange(self.y):
@@ -71,8 +68,8 @@ class Aplicacion:
         return imagen_perturbada
 
     def limpiar(self):
-        sal = []
-        pimienta = []
+        """elimina sal y pimienta
+        """
         temp = []
         pixeles = []
         imagen_limpia = Image.new("RGB", (self.x,self.y))
@@ -130,6 +127,9 @@ class Aplicacion:
         return imagen_limpia
 
     def diferencia(self):
+        """resta los pixeles de la imagen gris a una imagen gris que se
+        le haya aplicado el filtro del promedio
+        """
         imagen_nueva = Image.new("RGB", (self.x, self.y))
         difusa = filtros.hacer_difusa(self.imagen_original)
         pixeles = []
